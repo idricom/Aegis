@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЧОП ЭГИДА - Онлайн-платформа</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
+body{background:#f9f9f9;color:#333;transition:0.3s;}
+.container{width:90%;max-width:1200px;margin:0 auto;}
+header{background:#1e1e2f;color:#fff;padding:20px 0;box-shadow:0 4px 6px rgba(0,0,0,0.2);}
+header h1{display:inline-block;margin-left:20px;}
+nav{float:right;margin-right:20px;}
+nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;transition:0.3s;cursor:pointer;}
+nav a.active{border-bottom:2px solid #ffcc00;}
+nav a:hover{color:#ffcc00;}
+.hero{background:linear-gradient(135deg,#1e1e2f,#34344b);color:#fff;padding:60px 20px;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.2);}
+.hero .btn{display:inline-block;margin-top:20px;padding:12px 30px;background:#ffcc00;color:#1e1e2f;font-weight:bold;border-radius:5px;cursor:pointer;transition:0.3s;}
+.hero .btn:hover{background:#e6b800;}
+.cards,.courses,.profile-section,.videos-section{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;}
+.card,.course-card,.video-card,.profile-card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 6px 15px rgba(0,0,0,0.1);flex:1 1 calc(33% - 20px);min-width:250px;transition:0.3s;opacity:0;transform:translateY(20px);}
+.card.show,.course-card.show,.video-card.show,.profile-card.show{opacity:1;transform:translateY(0);}
+.btn-small,button{display:inline-block;padding:10px 20px;background:#ffcc00;color:#1e1e2f;font-weight:bold;border-radius:5px;border:none;cursor:pointer;transition:0.3s;margin-top:10px;}
+.btn-small:hover,button:hover{background:#e6b800;}
+footer{background:#1e1e2f;color:#fff;text-align:center;padding:20px 0;margin-top:40px;}
+iframe{border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:10px;}
+
+/* --- Модальные окна --- */
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+.modal-content{background:#fff;margin:10% auto;padding:20px;border-radius:10px;width:90%;max-width:500px;box-shadow:0 6px 20px rgba(0,0,0,0.3);}
+.close{color:#333;float:right;font-size:28px;font-weight:bold;cursor:pointer;}
+.close:hover{color:#000;}
+.modal form{display:flex;flex-direction:column;gap:10px;}
+.modal input,.modal select{padding:10px;border-radius:5px;border:1px solid #ccc;}
+.modal button{background:#1e1e2f;color:#fff;}
+.modal button:hover{background:#34344b;}
+
+/* --- Скрытые секции --- */
+.section{display:none;}
+.section.active{display:block;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-container">
+    <h1>ЧОП «ЭГИДА»</h1>
+    <nav>
+      <a class="active" onclick="showSection('home', this)">Главная</a>
+      <a onclick="showSection('courses', this)">Курсы</a>
+      <a onclick="showSection('profile', this)">Личный кабинет</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Главная -->
+  <section id="home" class="section active">
+    <section class="hero">
+      <div class="container">
+        <h2>Обучение безопасности для сотрудников и охранников</h2>
+        <p>Семинары, вебинары и мини-курсы с сертификатами</p>
+        <button class="btn" onclick="openModal('registrationModal')">Записаться</button>
+      </div>
+    </section>
+    <section class="announcements container">
+      <h3>Ближайшие мероприятия</h3>
+      <div class="cards">
+        <div class="card show" title="Семинар для офисов">
+          <h4>Семинар: Безопасность офиса</h4>
+          <p>15 сентября 2025, 10:00</p>
+          <button onclick="openModal('registrationModal')">Регистрация</button>
+        </div>
+        <div class="card show" title="Вебинар для родителей">
+          <h4>Вебинар: Защита детей дома</h4>
+          <p>20 сентября 2025, 18:00</p>
+          <button onclick="openModal('registrationModal')">Регистрация</button>
+        </div>
+        <div class="card show" title="Курс для охранников">
+          <h4>Мини-курс: Работа охранника</h4>
+          <p>Старт 25 сентября 2025</p>
+          <button onclick="openModal('registrationModal')">Подробнее</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Курсы -->
+  <section id="courses" class="section">
+    <div class="container courses">
+      <h2>Наши курсы и вебинары</h2>
+      <div class="course-card show" title="Семинар по безопасности офиса">
+        <h3>Семинар: Безопасность офиса</h3>
+        <p>15 сентября 2025, 10:00</p>
+        <p>Охрана объектов, реагирование на угрозы, контроль доступа.</p>
+        <button onclick="openModal('registrationModal')">Регистрация</button>
+      </div>
+      <div class="course-card show" title="Вебинар по защите детей">
+        <h3>Вебинар: Защита детей дома</h3>
+        <p>20 сентября 2025, 18:00</p>
+        <p>Обучение родителей безопасным методам защиты дома.</p>
+        <button onclick="openModal('registrationModal')">Регистрация</button>
+      </div>
+      <div class="course-card show" title="Мини-курс для охранников">
+        <h3>Мини-курс: Работа охранника</h3>
+        <p>Старт 25 сентября 2025</p>
+        <p>Основы охраны, техника безопасности, реагирование на угрозы.</p>
+        <button onclick="openModal('registrationModal')">Регистрация</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Личный кабинет -->
+  <section id="profile" class="section">
+    <div class="container profile-section">
+      <h2>Личный кабинет</h2>
+      <div class="profile-card show">
+        <p>Имя: Иван Иванов</p>
+        <p>Участник курсов: Мини-курс «Работа охранника»</p>
+        <button onclick="alert('Сертификат скачан!')">Скачать сертификат</button>
+      </div>
+      <div class="videos-section">
+        <h3>Прошедшие мероприятия</h3>
+        <div class="video-card show">
+          <iframe width="320" height="180" src="https://www.youtube.com/embed/VIDEO_ID" title="Видео" frameborder="0" allowfullscreen></iframe>
+          <p>Семинар: Безопасность офиса</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 ЧОП «ЭГИДА» | Контакты: +7 903 750-43-05</p>
+  </div>
+</footer>
+
+<!-- Modal Registration -->
+<div id="registrationModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('registrationModal')">&times;</span>
+    <h2>Регистрация на курс</h2>
+    <form id="regForm">
+      <label>Имя</label><input type="text" required>
+      <label>Фамилия</label><input type="text" required>
+      <label>Email</label><input type="email" required>
+      <label>Телефон</label><input type="tel" required>
+      <label>Категория участника</label>
+      <select required>
+        <option>Охранник</option>
+        <option>Сотрудник компании</option>
+        <option>Родитель</option>
+      </select>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function showSection(id, el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+}
+function openModal(id){document.getElementById(id).style.display='block';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+window.onclick=function(e){if(e.target.classList.contains('modal')) e.target.style.display='none';}
+document.getElementById('regForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Регистрация отправлена!');
+  closeModal('registrationModal');
+});
+</script>
+</body>
+</html>
