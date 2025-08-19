@@ -3,37 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЧОП ЭГИДА - Онлайн-платформа</title>
+<title>ЧОП ЭГИДА - Образовательная платформа по безопасности</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
-body{background:#f9f9f9;color:#333;transition:0.3s;}
+/* --- Общие стили --- */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'SF Pro Display','Segoe UI',sans-serif;}
+body{background:#f5f5f7;color:#1c1c1e;line-height:1.6;transition:0.3s;}
+a{text-decoration:none;}
 .container{width:90%;max-width:1200px;margin:0 auto;}
-header{background:#1e1e2f;color:#fff;padding:20px 0;box-shadow:0 4px 6px rgba(0,0,0,0.2);}
-header h1{display:inline-block;margin-left:20px;}
+header{background:#fff;padding:20px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100;}
+header h1{display:inline-block;font-weight:700;font-size:1.5rem;margin-left:20px;color:#111;}
 nav{float:right;margin-right:20px;}
-nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;transition:0.3s;cursor:pointer;}
-nav a.active{border-bottom:2px solid #ffcc00;}
-nav a:hover{color:#ffcc00;}
-.hero{background:linear-gradient(135deg,#1e1e2f,#34344b);color:#fff;padding:60px 20px;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.2);}
-.hero .btn{display:inline-block;margin-top:20px;padding:12px 30px;background:#ffcc00;color:#1e1e2f;font-weight:bold;border-radius:5px;cursor:pointer;transition:0.3s;}
-.hero .btn:hover{background:#e6b800;}
-.cards,.courses,.profile-section,.videos-section{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;}
-.card,.course-card,.video-card,.profile-card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 6px 15px rgba(0,0,0,0.1);flex:1 1 calc(33% - 20px);min-width:250px;transition:0.3s;opacity:0;transform:translateY(20px);}
-.card.show,.course-card.show,.video-card.show,.profile-card.show{opacity:1;transform:translateY(0);}
-.btn-small,button{display:inline-block;padding:10px 20px;background:#ffcc00;color:#1e1e2f;font-weight:bold;border-radius:5px;border:none;cursor:pointer;transition:0.3s;margin-top:10px;}
-.btn-small:hover,button:hover{background:#e6b800;}
-footer{background:#1e1e2f;color:#fff;text-align:center;padding:20px 0;margin-top:40px;}
-iframe{border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:10px;}
+nav a{color:#111;margin-left:20px;font-weight:600;padding-bottom:5px;transition:0.3s;cursor:pointer;}
+nav a.active{border-bottom:2px solid #007aff;}
+nav a:hover{color:#007aff;}
+.hero{background:#fff;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.08);padding:60px 20px;margin-top:20px;text-align:center;transition:0.3s;}
+.hero h2{font-size:2rem;color:#111;margin-bottom:15px;}
+.hero p{font-size:1.1rem;color:#555;}
+.hero .btn{display:inline-block;margin-top:20px;padding:12px 30px;background:#007aff;color:#fff;font-weight:bold;border-radius:12px;cursor:pointer;transition:0.3s;font-size:1rem;}
+.hero .btn:hover{background:#005ecb;}
 
-/* --- Модальные окна --- */
+/* --- Секции карточек --- */
+.cards,.courses,.profile-section,.videos-section{display:flex;gap:20px;flex-wrap:wrap;margin-top:30px;}
+.card,.course-card,.video-card,.profile-card{background:#fff;padding:25px;border-radius:16px;box-shadow:0 12px 25px rgba(0,0,0,0.08);flex:1 1 calc(33% - 20px);min-width:280px;transition:0.4s;opacity:0;transform:translateY(20px);}
+.card.show,.course-card.show,.video-card.show,.profile-card.show{opacity:1;transform:translateY(0);}
+.card:hover,.course-card:hover,.video-card:hover,.profile-card:hover{box-shadow:0 16px 30px rgba(0,0,0,0.12);}
+.card h4,.course-card h3{color:#111;margin-bottom:10px;}
+.card p,.course-card p{color:#555;margin-bottom:10px;}
+button{padding:10px 20px;border:none;border-radius:12px;background:#007aff;color:#fff;font-weight:bold;cursor:pointer;transition:0.3s;}
+button:hover{background:#005ecb;}
+
+/* --- Модальное окно --- */
 .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
-.modal-content{background:#fff;margin:10% auto;padding:20px;border-radius:10px;width:90%;max-width:500px;box-shadow:0 6px 20px rgba(0,0,0,0.3);}
-.close{color:#333;float:right;font-size:28px;font-weight:bold;cursor:pointer;}
-.close:hover{color:#000;}
-.modal form{display:flex;flex-direction:column;gap:10px;}
-.modal input,.modal select{padding:10px;border-radius:5px;border:1px solid #ccc;}
-.modal button{background:#1e1e2f;color:#fff;}
-.modal button:hover{background:#34344b;}
+.modal-content{background:#fff;margin:8% auto;padding:25px;border-radius:16px;width:90%;max-width:500px;box-shadow:0 12px 30px rgba(0,0,0,0.2);}
+.close{float:right;font-size:28px;font-weight:bold;cursor:pointer;color:#111;}
+.close:hover{color:#007aff;}
+.modal form{display:flex;flex-direction:column;gap:15px;}
+.modal input,.modal select{padding:12px;border-radius:12px;border:1px solid #ccc;font-size:1rem;}
+.modal button{background:#007aff;color:#fff;padding:12px;border-radius:12px;font-size:1rem;}
+.modal button:hover{background:#005ecb;}
 
 /* --- Скрытые секции --- */
 .section{display:none;}
@@ -55,56 +62,54 @@ iframe{border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:10px;
 <main>
   <!-- Главная -->
   <section id="home" class="section active">
-    <section class="hero">
-      <div class="container">
-        <h2>Обучение безопасности для сотрудников и охранников</h2>
-        <p>Семинары, вебинары и мини-курсы с сертификатами</p>
-        <button class="btn" onclick="openModal('registrationModal')">Записаться</button>
+    <div class="hero">
+      <h2>Обучение безопасности для всех</h2>
+      <p>Онлайн-семинары, вебинары и мини-курсы для сотрудников, охранников и родителей. После прохождения курсов участники получают электронные сертификаты.</p>
+      <button onclick="openModal('registrationModal')">Записаться на курс</button>
+    </div>
+    <div class="container cards">
+      <div class="card show">
+        <h4>Семинар: Безопасность офиса</h4>
+        <p>1 октября 2025, 10:00</p>
+        <p>Охрана объектов, контроль доступа, реагирование на угрозы.</p>
+        <button onclick="openModal('registrationModal')">Регистрация</button>
       </div>
-    </section>
-    <section class="announcements container">
-      <h3>Ближайшие мероприятия</h3>
-      <div class="cards">
-        <div class="card show" title="Семинар для офисов">
-          <h4>Семинар: Безопасность офиса</h4>
-          <p>15 сентября 2025, 10:00</p>
-          <button onclick="openModal('registrationModal')">Регистрация</button>
-        </div>
-        <div class="card show" title="Вебинар для родителей">
-          <h4>Вебинар: Защита детей дома</h4>
-          <p>20 сентября 2025, 18:00</p>
-          <button onclick="openModal('registrationModal')">Регистрация</button>
-        </div>
-        <div class="card show" title="Курс для охранников">
-          <h4>Мини-курс: Работа охранника</h4>
-          <p>Старт 25 сентября 2025</p>
-          <button onclick="openModal('registrationModal')">Подробнее</button>
-        </div>
+      <div class="card show">
+        <h4>Вебинар: Защита детей дома</h4>
+        <p>3 октября 2025, 18:00</p>
+        <p>Современные методы безопасности для семей и детей.</p>
+        <button onclick="openModal('registrationModal')">Регистрация</button>
       </div>
-    </section>
+      <div class="card show">
+        <h4>Мини-курс: Работа охранника</h4>
+        <p>5 октября 2025, 09:00</p>
+        <p>Основы охраны, техника безопасности, реагирование на угрозы.</p>
+        <button onclick="openModal('registrationModal')">Подробнее</button>
+      </div>
+    </div>
   </section>
 
   <!-- Курсы -->
   <section id="courses" class="section">
     <div class="container courses">
       <h2>Наши курсы и вебинары</h2>
-      <div class="course-card show" title="Семинар по безопасности офиса">
+      <div class="course-card show">
         <h3>Семинар: Безопасность офиса</h3>
-        <p>15 сентября 2025, 10:00</p>
-        <p>Охрана объектов, реагирование на угрозы, контроль доступа.</p>
-        <button onclick="openModal('registrationModal')">Регистрация</button>
+        <p>1 октября 2025, 10:00</p>
+        <p>Включает: аудит безопасности офиса, установка систем контроля доступа, обучение персонала, реагирование на угрозы.</p>
+        <button onclick="openModal('registrationModal')">Записаться</button>
       </div>
-      <div class="course-card show" title="Вебинар по защите детей">
+      <div class="course-card show">
         <h3>Вебинар: Защита детей дома</h3>
-        <p>20 сентября 2025, 18:00</p>
-        <p>Обучение родителей безопасным методам защиты дома.</p>
-        <button onclick="openModal('registrationModal')">Регистрация</button>
+        <p>3 октября 2025, 18:00</p>
+        <p>Включает: советы по безопасному дому, предотвращение опасных ситуаций, обучение родителей и детей.</p>
+        <button onclick="openModal('registrationModal')">Записаться</button>
       </div>
-      <div class="course-card show" title="Мини-курс для охранников">
+      <div class="course-card show">
         <h3>Мини-курс: Работа охранника</h3>
-        <p>Старт 25 сентября 2025</p>
-        <p>Основы охраны, техника безопасности, реагирование на угрозы.</p>
-        <button onclick="openModal('registrationModal')">Регистрация</button>
+        <p>5 октября 2025, 09:00</p>
+        <p>Включает: основы охраны, распознавание угроз, действия при ЧП, основы видеонаблюдения.</p>
+        <button onclick="openModal('registrationModal')">Записаться</button>
       </div>
     </div>
   </section>
@@ -115,11 +120,11 @@ iframe{border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:10px;
       <h2>Личный кабинет</h2>
       <div class="profile-card show">
         <p>Имя: Иван Иванов</p>
-        <p>Участник курсов: Мини-курс «Работа охранника»</p>
+        <p>Участник: Мини-курс «Работа охранника»</p>
         <button onclick="alert('Сертификат скачан!')">Скачать сертификат</button>
       </div>
       <div class="videos-section">
-        <h3>Прошедшие мероприятия</h3>
+        <h3>Видеозаписи прошедших мероприятий</h3>
         <div class="video-card show">
           <iframe width="320" height="180" src="https://www.youtube.com/embed/VIDEO_ID" title="Видео" frameborder="0" allowfullscreen></iframe>
           <p>Семинар: Безопасность офиса</p>
@@ -135,17 +140,16 @@ iframe{border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:10px;
   </div>
 </footer>
 
-<!-- Modal Registration -->
+<!-- Модальное окно регистрации -->
 <div id="registrationModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('registrationModal')">&times;</span>
     <h2>Регистрация на курс</h2>
     <form id="regForm">
-      <label>Имя</label><input type="text" required>
-      <label>Фамилия</label><input type="text" required>
-      <label>Email</label><input type="email" required>
-      <label>Телефон</label><input type="tel" required>
-      <label>Категория участника</label>
+      <input type="text" placeholder="Имя" required>
+      <input type="text" placeholder="Фамилия" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Телефон" required>
       <select required>
         <option>Охранник</option>
         <option>Сотрудник компании</option>
@@ -171,6 +175,11 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   alert('Регистрация отправлена!');
   closeModal('registrationModal');
 });
+window.onload=function(){
+  document.querySelectorAll('.card, .course-card, .profile-card, .video-card').forEach(el=>{
+    setTimeout(()=>el.classList.add('show'),100);
+  });
+}
 </script>
 </body>
 </html>
