@@ -1,88 +1,100 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЧОП "ЭГИДА" - Главная</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body { background: linear-gradient(135deg,#0f172a,#1e40af); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:#fff; scroll-behavior: smooth;}
-  .animate-card{transition: transform 0.3s,box-shadow 0.3s; background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border:1px solid rgba(255,255,255,0.2); border-radius:16px;}
-  .animate-card:hover{transform: translateY(-8px); box-shadow:0 20px 40px rgba(0,0,0,0.4);}
-  .btn-primary{background: linear-gradient(45deg,#3b82f6,#60a5fa); border-radius:12px; font-weight:600; padding:12px 24px; transition:0.3s;}
-  .btn-primary:hover{transform: scale(1.05); background: linear-gradient(45deg,#2563eb,#3b82f6);}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ООО ЧОП "ЭГИДА" – Главная</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg,#0f172a,#1e40af); color: #fff; }
+    .btn-primary { background: linear-gradient(45deg, #3b82f6, #93c5fd); border-radius: 12px; font-weight: 600; transition: all 0.2s ease; }
+    .btn-primary:hover { background: linear-gradient(45deg, #2563eb, #60a5fa); transform: scale(1.05); }
+    .card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  </style>
 </head>
 <body>
-
-<!-- Навигация -->
-<nav class="bg-black bg-opacity-70 p-4 sticky top-0 z-50">
-  <div class="container mx-auto flex justify-between items-center">
+  <nav class="bg-black bg-opacity-80 sticky top-0 z-20 p-4 flex justify-between items-center">
     <div class="text-2xl font-bold">ЧОП "ЭГИДА"</div>
     <div class="space-x-6">
       <a href="index.html" class="hover:text-blue-300">Главная</a>
       <a href="events.html" class="hover:text-blue-300">Мероприятия</a>
       <a href="courses.html" class="hover:text-blue-300">Курсы</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- Hero -->
-<section class="h-[600px] flex items-center justify-center text-center">
-  <div>
-    <h1 class="text-6xl font-extrabold mb-6">Ваша безопасность — наша миссия</h1>
-    <p class="text-xl max-w-2xl mx-auto mb-6">
-      Курсы и семинары от ЧОП "ЭГИДА" для охранников, сотрудников и родителей.<br>
-      Начало обучения: <span class="text-blue-300 font-bold">1 октября 2025</span>
+  <!-- Hero -->
+  <section class="flex flex-col items-center justify-center text-center py-20 px-4">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Ваша безопасность — наша забота</h1>
+    <p class="text-lg md:text-2xl max-w-3xl mb-8">ООО ЧОП "ЭГИДА" обучает охранников, сотрудников и родителей навыкам безопасности. Начало курсов: 1 октября 2025.</p>
+    <a href="#register" class="btn-primary px-8 py-4 text-lg">Зарегистрироваться</a>
+  </section>
+
+  <!-- О компании -->
+  <section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-6">О компании</h2>
+    <p class="mb-4 text-gray-200 text-lg">ЧОП "ЭГИДА" работает на рынке охраны и обучения более 10 лет. Мы используем современные технологии и опыт профессионалов, чтобы обеспечить безопасность людей и бизнеса. Наши курсы включают практические занятия, тесты, видеолекции и электронные сертификаты.</p>
+    <p class="mb-4 text-gray-200 text-lg">Мы обучаем:
+      <ul class="list-disc pl-6 mt-2 text-gray-300">
+        <li>Охранников и сотрудников служб безопасности</li>
+        <li>Персонал компаний по управлению рисками</li>
+        <li>Родителей методам защиты детей</li>
+      </ul>
     </p>
-    <a href="courses.html" class="btn-primary">Посмотреть курсы</a>
-  </div>
-</section>
+    <a href="courses.html" class="btn-primary px-6 py-3 mt-4 inline-block">Посмотреть курсы</a>
+  </section>
 
-<!-- Почему выбирают ЭГИДА -->
-<section class="container mx-auto p-10">
-  <h2 class="text-3xl font-bold mb-6 text-center">Почему выбирают ЭГИДА?</h2>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="animate-card p-6 text-center">
+  <!-- Почему выбирают нас -->
+  <section class="container mx-auto px-6 py-16 grid md:grid-cols-3 gap-6">
+    <div class="card text-center">
       <h3 class="text-4xl font-bold text-blue-300 mb-2">12,000+</h3>
-      <p>Обученных участников</p>
+      <p>Участников обучено</p>
     </div>
-    <div class="animate-card p-6 text-center">
+    <div class="card text-center">
       <h3 class="text-4xl font-bold text-blue-300 mb-2">60+</h3>
       <p>Проведённых мероприятий</p>
     </div>
-    <div class="animate-card p-6 text-center">
+    <div class="card text-center">
       <h3 class="text-4xl font-bold text-blue-300 mb-2">97%</h3>
       <p>Удовлетворённость клиентов</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Программы -->
-<section class="container mx-auto p-10">
-  <h2 class="text-3xl font-bold mb-6">Программы обучения</h2>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="animate-card p-6">
-      <h3 class="text-xl font-bold mb-2">Охранники</h3>
-      <p class="text-gray-300 mb-2">От базовых навыков до продвинутых техник охраны и управления рисками.</p>
-      <a href="courses.html#guard" class="text-blue-300 hover:underline">Узнать больше</a>
-    </div>
-    <div class="animate-card p-6">
-      <h3 class="text-xl font-bold mb-2">Сотрудники</h3>
-      <p class="text-gray-300 mb-2">Обучение безопасности для персонала: управление кризисами, эвакуация, предотвращение угроз.</p>
-      <a href="courses.html#staff" class="text-blue-300 hover:underline">Узнать больше</a>
-    </div>
-    <div class="animate-card p-6">
-      <h3 class="text-xl font-bold mb-2">Родители</h3>
-      <p class="text-gray-300 mb-2">Защита детей дома, в школе и на улице, контроль гаджетов, интернет-безопасность.</p>
-      <a href="courses.html#parents" class="text-blue-300 hover:underline">Узнать больше</a>
-    </div>
-  </div>
-</section>
+  <!-- Регистрация -->
+  <section id="register" class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-6">Станьте частью безопасного будущего</h2>
+    <p class="text-gray-200 mb-6">Заполните форму ниже, чтобы начать обучение и получить доступ к курсам и мероприятиям.</p>
+    <form onsubmit="handleRegister(event)" class="grid md:grid-cols-2 gap-6">
+      <input type="text" id="name" placeholder="Имя" class="p-4 rounded-lg bg-gray-800 text-white" required>
+      <input type="email" id="email" placeholder="E-mail" class="p-4 rounded-lg bg-gray-800 text-white" required>
+      <input type="tel" id="phone" placeholder="Телефон" class="p-4 rounded-lg bg-gray-800 text-white" required>
+      <select id="category" class="p-4 rounded-lg bg-gray-800 text-white" required>
+        <option value="">Категория</option>
+        <option value="Охранник">Охранник</option>
+        <option value="Сотрудник">Сотрудник</option>
+        <option value="Родитель">Родитель</option>
+      </select>
+      <button type="submit" class="btn-primary px-8 py-4 text-lg md:col-span-2">Зарегистрироваться</button>
+    </form>
+  </section>
 
-<footer class="bg-black bg-opacity-70 text-center p-6 mt-8">
-  &copy; 2025 ООО ЧОП "ЭГИДА". Все права защищены.
-</footer>
+  <footer class="bg-black bg-opacity-80 text-center p-6">
+    &copy; 2025 ООО ЧОП "ЭГИДА"
+  </footer>
 
+  <script>
+    function handleRegister(e){
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        category: document.getElementById('category').value
+      };
+      localStorage.setItem('user', JSON.stringify(data));
+      alert('Регистрация успешна! Проверьте вашу почту.');
+      e.target.reset();
+    }
+  </script>
 </body>
 </html>
