@@ -1,185 +1,195 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЧОП ЭГИДА - Образовательная платформа по безопасности</title>
-<style>
-/* --- Общие стили --- */
-*{box-sizing:border-box;margin:0;padding:0;font-family:'SF Pro Display','Segoe UI',sans-serif;}
-body{background:#f5f5f7;color:#1c1c1e;line-height:1.6;transition:0.3s;}
-a{text-decoration:none;}
-.container{width:90%;max-width:1200px;margin:0 auto;}
-header{background:#fff;padding:20px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100;}
-header h1{display:inline-block;font-weight:700;font-size:1.5rem;margin-left:20px;color:#111;}
-nav{float:right;margin-right:20px;}
-nav a{color:#111;margin-left:20px;font-weight:600;padding-bottom:5px;transition:0.3s;cursor:pointer;}
-nav a.active{border-bottom:2px solid #007aff;}
-nav a:hover{color:#007aff;}
-.hero{background:#fff;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.08);padding:60px 20px;margin-top:20px;text-align:center;transition:0.3s;}
-.hero h2{font-size:2rem;color:#111;margin-bottom:15px;}
-.hero p{font-size:1.1rem;color:#555;}
-.hero .btn{display:inline-block;margin-top:20px;padding:12px 30px;background:#007aff;color:#fff;font-weight:bold;border-radius:12px;cursor:pointer;transition:0.3s;font-size:1rem;}
-.hero .btn:hover{background:#005ecb;}
-
-/* --- Секции карточек --- */
-.cards,.courses,.profile-section,.videos-section{display:flex;gap:20px;flex-wrap:wrap;margin-top:30px;}
-.card,.course-card,.video-card,.profile-card{background:#fff;padding:25px;border-radius:16px;box-shadow:0 12px 25px rgba(0,0,0,0.08);flex:1 1 calc(33% - 20px);min-width:280px;transition:0.4s;opacity:0;transform:translateY(20px);}
-.card.show,.course-card.show,.video-card.show,.profile-card.show{opacity:1;transform:translateY(0);}
-.card:hover,.course-card:hover,.video-card:hover,.profile-card:hover{box-shadow:0 16px 30px rgba(0,0,0,0.12);}
-.card h4,.course-card h3{color:#111;margin-bottom:10px;}
-.card p,.course-card p{color:#555;margin-bottom:10px;}
-button{padding:10px 20px;border:none;border-radius:12px;background:#007aff;color:#fff;font-weight:bold;cursor:pointer;transition:0.3s;}
-button:hover{background:#005ecb;}
-
-/* --- Модальное окно --- */
-.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
-.modal-content{background:#fff;margin:8% auto;padding:25px;border-radius:16px;width:90%;max-width:500px;box-shadow:0 12px 30px rgba(0,0,0,0.2);}
-.close{float:right;font-size:28px;font-weight:bold;cursor:pointer;color:#111;}
-.close:hover{color:#007aff;}
-.modal form{display:flex;flex-direction:column;gap:15px;}
-.modal input,.modal select{padding:12px;border-radius:12px;border:1px solid #ccc;font-size:1rem;}
-.modal button{background:#007aff;color:#fff;padding:12px;border-radius:12px;font-size:1rem;}
-.modal button:hover{background:#005ecb;}
-
-/* --- Скрытые секции --- */
-.section{display:none;}
-.section.active{display:block;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ООО ЧОП "ЭГИДА" - Безопасность и обучение</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e40af);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #ffffff;
+    }
+    .hero {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+      backdrop-filter: blur(12px);
+    }
+    .animate-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+    }
+    .animate-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    .fade-in {
+      animation: fadeIn 1.2s ease-in;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .btn-primary {
+      background: linear-gradient(45deg, #3b82f6, #93c5fd);
+      transition: background 0.3s ease, transform 0.2s ease;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(45deg, #2563eb, #60a5fa);
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="container header-container">
-    <h1>ЧОП «ЭГИДА»</h1>
-    <nav>
-      <a class="active" onclick="showSection('home', this)">Главная</a>
-      <a onclick="showSection('courses', this)">Курсы</a>
-      <a onclick="showSection('profile', this)">Личный кабинет</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <!-- Главная -->
-  <section id="home" class="section active">
-    <div class="hero">
-      <h2>Обучение безопасности для всех</h2>
-      <p>Онлайн-семинары, вебинары и мини-курсы для сотрудников, охранников и родителей. После прохождения курсов участники получают электронные сертификаты.</p>
-      <button onclick="openModal('registrationModal')">Записаться на курс</button>
+  <!-- Navigation -->
+  <nav class="bg-black bg-opacity-90 text-white p-4 shadow-lg sticky top-0 z-20">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">ЧОП "ЭГИДА"</div>
+      <div class="space-x-6">
+        <a href="index.html" class="hover:text-blue-300 transition duration-200">Главная</a>
+        <a href="events.html" class="hover:text-blue-300 transition duration-200">Мероприятия</a>
+        <a href="courses.html" class="hover:text-blue-300 transition duration-200">Курсы</a>
+      </div>
     </div>
-    <div class="container cards">
-      <div class="card show">
-        <h4>Семинар: Безопасность офиса</h4>
-        <p>1 октября 2025, 10:00</p>
-        <p>Охрана объектов, контроль доступа, реагирование на угрозы.</p>
-        <button onclick="openModal('registrationModal')">Регистрация</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero h-[600px] flex items-center justify-center text-white">
+    <div class="text-center fade-in">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Безопасность начинается с знаний</h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">ООО ЧОП "ЭГИДА" предлагает передовые программы обучения, чтобы вы и ваши близкие были готовы к любым вызовам.</p>
+      <a href="#register" class="btn-primary text-white px-8 py-4 text-lg">Начать обучение</a>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="container mx-auto p-8">
+    <div class="animate-card p-8 mb-8">
+      <h2 class="text-3xl font-bold mb-6">Наша миссия</h2>
+      <p class="text-gray-300 mb-6 text-lg">ООО ЧОП "ЭГИДА" стремится сделать мир безопаснее, предоставляя профессиональное обучение для охранников, сотрудников компаний и родителей. Мы верим, что знание — это сила, которая позволяет предотвратить угрозы и защитить то, что вам дорого. Наши программы разработаны экспертами с многолетним опытом, чтобы вы могли уверенно справляться с любыми ситуациями — от повседневных рисков до чрезвычайных происшествий.</p>
+      <a href="#register" class="btn-primary text-white px-6 py-3">Присоединяйтесь к нам</a>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="container mx-auto p-8">
+    <h2 class="text-3xl font-bold mb-6">Наши программы обучения</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="animate-card p-6 cursor-pointer" onclick="window.location.href='courses.html'">
+        <h3 class="text-xl font-semibold mb-2">Курсы для охранников</h3>
+        <p class="text-gray-300 mb-4">Профессиональная подготовка охранников: от базовых навыков до продвинутых техник. Начало: 1 октября 2025.</p>
+        <a href="courses.html" class="text-blue-300 hover:underline">Подробнее</a>
       </div>
-      <div class="card show">
-        <h4>Вебинар: Защита детей дома</h4>
-        <p>3 октября 2025, 18:00</p>
-        <p>Современные методы безопасности для семей и детей.</p>
-        <button onclick="openModal('registrationModal')">Регистрация</button>
+      <div class="animate-card p-6 cursor-pointer" onclick="window.location.href='courses.html'">
+        <h3 class="text-xl font-semibold mb-2">Программы для сотрудников</h3>
+        <p class="text-gray-300 mb-4">Обучение безопасности для персонала компаний, включая управление рисками и кризисные ситуации. Начало: 1 октября 2025.</p>
+        <a href="courses.html" class="text-blue-300 hover:underline">Подробнее</a>
       </div>
-      <div class="card show">
-        <h4>Мини-курс: Работа охранника</h4>
-        <p>5 октября 2025, 09:00</p>
-        <p>Основы охраны, техника безопасности, реагирование на угрозы.</p>
-        <button onclick="openModal('registrationModal')">Подробнее</button>
+      <div class="animate-card p-6 cursor-pointer" onclick="window.location.href='courses.html'">
+        <h3 class="text-xl font-semibold mb-2">Курсы для родителей</h3>
+        <p class="text-gray-300 mb-4">Практические советы по защите детей в школе, дома и на улице. Начало: 1 октября 2025.</p>
+        <a href="courses.html" class="text-blue-300 hover:underline">Подробнее</a>
       </div>
     </div>
   </section>
 
-  <!-- Курсы -->
-  <section id="courses" class="section">
-    <div class="container courses">
-      <h2>Наши курсы и вебинары</h2>
-      <div class="course-card show">
-        <h3>Семинар: Безопасность офиса</h3>
-        <p>1 октября 2025, 10:00</p>
-        <p>Включает: аудит безопасности офиса, установка систем контроля доступа, обучение персонала, реагирование на угрозы.</p>
-        <button onclick="openModal('registrationModal')">Записаться</button>
+  <!-- Stats Section -->
+  <section class="container mx-auto p-8">
+    <h2 class="text-3xl font-bold mb-6">Наши достижения</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="animate-card p-6 text-center">
+        <h3 class="text-4xl font-bold text-blue-300 mb-2">10,000+</h3>
+        <p class="text-gray-300">Обученных участников</p>
       </div>
-      <div class="course-card show">
-        <h3>Вебинар: Защита детей дома</h3>
-        <p>3 октября 2025, 18:00</p>
-        <p>Включает: советы по безопасному дому, предотвращение опасных ситуаций, обучение родителей и детей.</p>
-        <button onclick="openModal('registrationModal')">Записаться</button>
+      <div class="animate-card p-6 text-center">
+        <h3 class="text-4xl font-bold text-blue-300 mb-2">50+</h3>
+        <p class="text-gray-300">Проведённых мероприятий</p>
       </div>
-      <div class="course-card show">
-        <h3>Мини-курс: Работа охранника</h3>
-        <p>5 октября 2025, 09:00</p>
-        <p>Включает: основы охраны, распознавание угроз, действия при ЧП, основы видеонаблюдения.</p>
-        <button onclick="openModal('registrationModal')">Записаться</button>
+      <div class="animate-card p-6 text-center">
+        <h3 class="text-4xl font-bold text-blue-300 mb-2">95%</h3>
+        <p class="text-gray-300">Удовлетворённость клиентов</p>
       </div>
     </div>
   </section>
 
-  <!-- Личный кабинет -->
-  <section id="profile" class="section">
-    <div class="container profile-section">
-      <h2>Личный кабинет</h2>
-      <div class="profile-card show">
-        <p>Имя: Иван Иванов</p>
-        <p>Участник: Мини-курс «Работа охранника»</p>
-        <button onclick="alert('Сертификат скачан!')">Скачать сертификат</button>
+  <!-- Testimonials Section -->
+  <section class="container mx-auto p-8">
+    <h2 class="text-3xl font-bold mb-6">Отзывы наших клиентов</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="animate-card p-6">
+        <p class="text-gray-300 mb-4">"Курсы ЭГИДА изменили мой подход к безопасности. Теперь я чувствую себя гораздо увереннее на работе."</p>
+        <p class="text-gray-400 font-semibold">Иван Петров, охранник</p>
       </div>
-      <div class="videos-section">
-        <h3>Видеозаписи прошедших мероприятий</h3>
-        <div class="video-card show">
-          <iframe width="320" height="180" src="https://www.youtube.com/embed/VIDEO_ID" title="Видео" frameborder="0" allowfullscreen></iframe>
-          <p>Семинар: Безопасность офиса</p>
+      <div class="animate-card p-6">
+        <p class="text-gray-300 mb-4">"Семинар для родителей дал мне конкретные инструменты, чтобы защитить моих детей. Очень рекомендую!"</p>
+        <p class="text-gray-400 font-semibold">Анна Смирнова, родитель</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container mx-auto p-8">
+    <h2 class="text-3xl font-bold mb-6">Часто задаваемые вопросы</h2>
+    <div class="animate-card p-6 mb-4">
+      <h3 class="text-xl font-semibold mb-2">Кто может пройти обучение?</h3>
+      <p class="text-gray-300">Наши программы подходят для охранников, сотрудников компаний и родителей, желающих повысить уровень безопасности.</p>
+    </div>
+    <div class="animate-card p-6 mb-4">
+      <h3 class="text-xl font-semibold mb-2">Как получить сертификат?</h3>
+      <p class="text-gray-300">Пройдите курс, сдайте тест, и вы сможете скачать сертификат в формате PDF.</p>
+    </div>
+    <div class="animate-card p-6">
+      <h3 class="text-xl font-semibold mb-2">Когда начинаются курсы?</h3>
+      <p class="text-gray-300">Все курсы стартуют 1 октября 2025 года. Зарегистрируйтесь сейчас, чтобы не пропустить!</p>
+    </div>
+  </section>
+
+  <!-- Registration Section -->
+  <section id="register" class="container mx-auto p-8">
+    <div class="animate-card p-8">
+      <h2 class="text-3xl font-bold mb-6">Начните свой путь к безопасности</h2>
+      <p class="text-gray-300 mb-6 text-lg">Зарегистрируйтесь, чтобы получить доступ к курсам и мероприятиям, начиная с 1 октября 2025 года.</p>
+      <form id="register-form" onsubmit="handleRegister(event)">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <input type="text" id="name" placeholder="Имя" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <input type="email" id="email" placeholder="E-mail" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <input type="tel" id="phone" placeholder="Телефон" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <select id="category" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+            <option value="">Выберите категорию</option>
+            <option value="Охранник">Охранник</option>
+            <option value="Сотрудник">Сотрудник компании</option>
+            <option value="Родитель">Родитель</option>
+          </select>
         </div>
-      </div>
+        <button type="submit" class="btn-primary text-white px-8 py-4 text-lg">Зарегистрироваться</button>
+      </form>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="container">
-    <p>© 2025 ЧОП «ЭГИДА» | Контакты: +7 903 750-43-05</p>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="bg-black bg-opacity-90 text-white p-6 mt-8">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 ООО ЧОП "ЭГИДА". Все права защищены.</p>
+    </div>
+  </footer>
 
-<!-- Модальное окно регистрации -->
-<div id="registrationModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('registrationModal')">&times;</span>
-    <h2>Регистрация на курс</h2>
-    <form id="regForm">
-      <input type="text" placeholder="Имя" required>
-      <input type="text" placeholder="Фамилия" required>
-      <input type="email" placeholder="Email" required>
-      <input type="tel" placeholder="Телефон" required>
-      <select required>
-        <option>Охранник</option>
-        <option>Сотрудник компании</option>
-        <option>Родитель</option>
-      </select>
-      <button type="submit">Отправить</button>
-    </form>
-  </div>
-</div>
-
-<script>
-function showSection(id, el){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-  el.classList.add('active');
-}
-function openModal(id){document.getElementById(id).style.display='block';}
-function closeModal(id){document.getElementById(id).style.display='none';}
-window.onclick=function(e){if(e.target.classList.contains('modal')) e.target.style.display='none';}
-document.getElementById('regForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  alert('Регистрация отправлена!');
-  closeModal('registrationModal');
-});
-window.onload=function(){
-  document.querySelectorAll('.card, .course-card, .profile-card, .video-card').forEach(el=>{
-    setTimeout(()=>el.classList.add('show'),100);
-  });
-}
-</script>
+  <script>
+    function handleRegister(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const category = document.getElementById('category').value;
+      localStorage.setItem('user', JSON.stringify({ name, email, phone, category }));
+      alert('Регистрация успешна! Проверьте вашу почту.');
+      document.getElementById('register-form').reset();
+    }
+  </script>
 </body>
 </html>
