@@ -1,3 +1,4 @@
+<!-- courses.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,83 +6,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Курсы – ЧОП "ЭГИДА"</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg,#0f172a,#1e40af); color: #fff; }
-    .btn-primary { background: linear-gradient(45deg,#3b82f6,#93c5fd); border-radius: 12px; font-weight:600; transition: all 0.2s ease; }
-    .btn-primary:hover { background: linear-gradient(45deg,#2563eb,#60a5fa); transform: scale(1.05); }
-    .card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border-radius:16px; padding:1.5rem; transition: all 0.3s ease; }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); cursor:pointer; }
-    select { appearance:none; -webkit-appearance:none; -moz-appearance:none; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e40af);
+      color: #ffffff;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .btn-primary {
+      background: linear-gradient(45deg, #3b82f6, #93c5fd);
+      transition: background 0.3s ease, transform 0.2s ease;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(45deg, #2563eb, #60a5fa);
+      transform: scale(1.05);
+    }
+    .fade-in { animation: fadeIn 1.2s ease-in; }
+    @keyframes fadeIn { 0% {opacity:0; transform: translateY(30px);} 100% {opacity:1; transform:translateY(0);} }
+    select { appearance: none; -webkit-appearance: none; background: rgba(255,255,255,0.1); color:white; padding:0.75rem 1rem; border-radius:12px; border:none; }
+    .toggle-content { display:none; color:#e0e0e0; margin-top:0.5rem; font-size:0.9rem; }
   </style>
 </head>
 <body>
-  <nav class="bg-black bg-opacity-80 sticky top-0 z-20 p-4 flex justify-between items-center">
-    <div class="text-2xl font-bold">ЧОП "ЭГИДА"</div>
-    <div class="space-x-6">
-      <a href="index.html" class="hover:text-blue-300">Главная</a>
-      <a href="events.html" class="hover:text-blue-300">Мероприятия</a>
-      <a href="courses.html" class="hover:text-blue-300">Курсы</a>
+  <!-- Навигация -->
+  <nav class="bg-black bg-opacity-80 sticky top-0 z-20 p-4 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">ЧОП "ЭГИДА"</div>
+      <div class="space-x-6 font-medium">
+        <a href="index.html" class="hover:text-blue-300 transition">Главная</a>
+        <a href="events.html" class="hover:text-blue-300 transition">Мероприятия</a>
+        <a href="courses.html" class="hover:text-blue-300 transition">Курсы</a>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="flex flex-col items-center justify-center text-center py-16 px-4">
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Образовательные курсы</h1>
-    <p class="text-lg md:text-2xl max-w-3xl mb-8">Курсы стартуют с 1 октября 2025 года. Мы обучаем охранников, сотрудников и родителей навыкам безопасности и предотвращения угроз.</p>
-    <a href="#register" class="btn-primary px-8 py-4 text-lg">Зарегистрироваться</a>
+  <section class="hero h-[400px] flex items-center justify-center text-center px-6 fade-in">
+    <div>
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Образовательные курсы</h1>
+      <p class="text-lg md:text-xl mb-6 max-w-3xl mx-auto">
+        Получите практические знания по безопасности, которые реально работают в жизни. Курсы стартуют с 1 октября 2025 года. Подходит для охранников, сотрудников и родителей.
+      </p>
+    </div>
   </section>
 
   <!-- Список курсов -->
-  <section class="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-6">
-    <div class="card" onclick="alert('Вы записались на курс: Основы охраны и безопасности')">
-      <h3 class="text-xl font-semibold mb-2">Основы охраны и безопасности</h3>
-      <p class="text-gray-200 mb-2">Дата старта: 01.10.2025</p>
-      <p class="text-gray-300 mb-4">Базовый курс для сотрудников и охранников: правовые основы, техника безопасности, практические навыки предотвращения угроз.</p>
-      <a class="text-blue-300 hover:underline" href="#">Узнать больше</a>
-    </div>
-    <div class="card" onclick="alert('Вы записались на курс: Безопасность в быту и для родителей')">
-      <h3 class="text-xl font-semibold mb-2">Безопасность в быту и для родителей</h3>
-      <p class="text-gray-200 mb-2">Дата старта: 05.10.2025</p>
-      <p class="text-gray-300 mb-4">Методы защиты детей дома, на улице и в интернете. Практические советы по контролю гаджетов и предотвращению рисков.</p>
-      <a class="text-blue-300 hover:underline" href="#">Узнать больше</a>
-    </div>
-    <div class="card" onclick="alert('Вы записались на курс: Кибербезопасность для всех')">
-      <h3 class="text-xl font-semibold mb-2">Кибербезопасность для всех</h3>
-      <p class="text-gray-200 mb-2">Дата старта: 12.10.2025</p>
-      <p class="text-gray-300 mb-4">Защита данных, безопасное использование интернета и соцсетей, предотвращение мошенничества и кибератак.</p>
-      <a class="text-blue-300 hover:underline" href="#">Узнать больше</a>
-    </div>
-    <div class="card" onclick="alert('Вы записались на курс: Действия при ЧС и пожарной эвакуации')">
-      <h3 class="text-xl font-semibold mb-2">Действия при ЧС и пожарной эвакуации</h3>
-      <p class="text-gray-200 mb-2">Дата старта: 20.10.2025</p>
-      <p class="text-gray-300 mb-4">Пошаговые алгоритмы действий в чрезвычайных ситуациях: пожар, эвакуация, первая помощь. Практические кейсы.</p>
-      <a class="text-blue-300 hover:underline" href="#">Узнать больше</a>
+  <section class="container mx-auto p-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Курс 1 -->
+      <div class="glass-card p-6 cursor-pointer" onclick="toggleContent('course1')">
+        <h3 class="text-xl font-semibold mb-2">Основы охраны и безопасности</h3>
+        <p class="text-gray-300 mb-2">Дата старта: 01.10.2025</p>
+        <p class="text-gray-300 mb-2">Базовый курс для сотрудников и охранников: правовые основы, техника безопасности, практические навыки предотвращения угроз.</p>
+        <div id="course1" class="toggle-content">
+          Этот курс включает:
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Правовые основы охранной деятельности.</li>
+            <li>Основы реагирования на угрозы.</li>
+            <li>Техника и оборудование для охраны объектов.</li>
+            <li>Сценарии предотвращения и ликвидации рисков.</li>
+            <li>Практические кейсы от профессионалов.</li>
+            <li>Методы взаимодействия с клиентами и коллегами.</li>
+          </ul>
+        </div>
+        <span class="text-blue-300 hover:underline mt-2 inline-block">Узнать больше</span>
+      </div>
+
+      <!-- Курс 2 -->
+      <div class="glass-card p-6 cursor-pointer" onclick="toggleContent('course2')">
+        <h3 class="text-xl font-semibold mb-2">Безопасность для родителей</h3>
+        <p class="text-gray-300 mb-2">Дата старта: 05.10.2025</p>
+        <p class="text-gray-300 mb-2">Защита детей дома, на улице, в школе и в интернете.</p>
+        <div id="course2" class="toggle-content">
+          В курсе:
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Создание безопасного домашнего пространства.</li>
+            <li>Онлайн-безопасность: контроль гаджетов и соцсетей.</li>
+            <li>Поведение ребенка в чрезвычайных ситуациях.</li>
+            <li>Обучение оказанию первой помощи.</li>
+            <li>Рекомендации для родителей и школы.</li>
+          </ul>
+        </div>
+        <span class="text-blue-300 hover:underline mt-2 inline-block">Узнать больше</span>
+      </div>
+
+      <!-- Курс 3 -->
+      <div class="glass-card p-6 cursor-pointer" onclick="toggleContent('course3')">
+        <h3 class="text-xl font-semibold mb-2">Кибербезопасность для всех</h3>
+        <p class="text-gray-300 mb-2">Дата старта: 12.10.2025</p>
+        <p class="text-gray-300 mb-2">Защита данных, безопасное использование интернета, предотвращение мошенничества и кибератак.</p>
+        <div id="course3" class="toggle-content">
+          Содержание курса:
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Основы кибербезопасности для сотрудников и родителей.</li>
+            <li>Обнаружение фишинговых атак и мошенничества.</li>
+            <li>Безопасное использование соцсетей и онлайн-сервисов.</li>
+            <li>Практические кейсы с анализом угроз.</li>
+            <li>Методы защиты личных и корпоративных данных.</li>
+          </ul>
+        </div>
+        <span class="text-blue-300 hover:underline mt-2 inline-block">Узнать больше</span>
+      </div>
+
+      <!-- Курс 4 -->
+      <div class="glass-card p-6 cursor-pointer" onclick="toggleContent('course4')">
+        <h3 class="text-xl font-semibold mb-2">Действия при ЧС и пожарной эвакуации</h3>
+        <p class="text-gray-300 mb-2">Дата старта: 20.10.2025</p>
+        <p class="text-gray-300 mb-2">Пошаговые алгоритмы действий при пожаре и других чрезвычайных ситуациях.</p>
+        <div id="course4" class="toggle-content">
+          Курс охватывает:
+          <ul class="list-disc pl-6 mt-2 space-y-1">
+            <li>Эвакуационные процедуры и алгоритмы.</li>
+            <li>Первая помощь пострадавшим.</li>
+            <li>Поведение при пожаре, наводнении, авариях.</li>
+            <li>Обучение командной работе и координации.</li>
+            <li>Практические примеры из реальных ЧС.</li>
+          </ul>
+        </div>
+        <span class="text-blue-300 hover:underline mt-2 inline-block">Узнать больше</span>
+      </div>
     </div>
   </section>
 
   <!-- Регистрация -->
-  <section id="register" class="container mx-auto px-6 py-16">
-    <h2 class="text-3xl font-bold mb-6">Запишитесь на курс</h2>
-    <form onsubmit="handleRegister(event)" class="grid md:grid-cols-2 gap-6">
-      <input type="text" id="name" placeholder="Имя" class="p-4 rounded-lg bg-gray-800 text-white" required>
-      <input type="email" id="email" placeholder="E-mail" class="p-4 rounded-lg bg-gray-800 text-white" required>
-      <input type="tel" id="phone" placeholder="Телефон" class="p-4 rounded-lg bg-gray-800 text-white" required>
-      <select id="category" class="p-4 rounded-lg bg-gray-800 text-white" required>
-        <option value="">Категория</option>
-        <option value="Охранник">Охранник</option>
-        <option value="Сотрудник">Сотрудник</option>
-        <option value="Родитель">Родитель</option>
-      </select>
-      <button type="submit" class="btn-primary px-8 py-4 text-lg md:col-span-2">Зарегистрироваться</button>
-    </form>
+  <section id="register" class="container mx-auto p-8">
+    <div class="glass-card p-8">
+      <h2 class="text-3xl font-bold mb-6">Записаться на курс</h2>
+      <form id="register-form" onsubmit="handleRegister(event)" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="text" id="name" placeholder="Имя" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <input type="email" id="email" placeholder="E-mail" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <input type="tel" id="phone" placeholder="Телефон" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <select id="category" class="bg-gray-800 text-white border-none rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+            <option value="">Выберите категорию</option>
+            <option value="Охранник">Охранник</option>
+            <option value="Сотрудник">Сотрудник компании</option>
+            <option value="Родитель">Родитель</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary px-8 py-4 text-lg">Зарегистрироваться</button>
+      </form>
+    </div>
   </section>
 
-  <footer class="bg-black bg-opacity-80 text-center p-6">
-    &copy; 2025 ООО ЧОП "ЭГИДА"
+  <footer class="bg-black bg-opacity-80 text-white p-6 mt-8 text-center">
+    <p>&copy; 2025 ООО ЧОП "ЭГИДА". Все права защищены.</p>
   </footer>
 
   <script>
-    function handleRegister(e){
+    function toggleContent(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    }
+    function handleRegister(e) {
       e.preventDefault();
       const data = {
         name: document.getElementById('name').value,
